@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinAssist - Home</title>
+  <style>
+    :root {
+      --bg-color: #f4f6fa;
+      --text-color: #1f2937;
+      --primary-color: #1e3a8a;
+      --card-bg: #ffffff;
+      --accent-color: #2563eb;
+    }
+
+    body.dark-mode {
+      --bg-color: #0f172a;
+      --text-color: #e2e8f0;
+      --primary-color: #60a5fa;
+      --card-bg: #1e293b;
+      --accent-color: #93c5fd;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.4s ease, color 0.4s ease;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: var(--card-bg);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      background: var(--primary-color);
+      color: white;
+      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .logo h1 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .theme-toggle {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(15deg);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 90px 24px 70px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #64748b;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+
+    body.dark-mode .hero p {
+      color: #94a3b8;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .cta-btn.primary {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .cta-btn.primary:hover {
+      background: var(--accent-color);
+      transform: translateY(-2px);
+    }
+
+    .cta-btn.secondary {
+      background: transparent;
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .cta-btn.secondary:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      color: #64748b;
+      line-height: 1.7;
+    }
+
+    body.dark-mode .card p {
+      color: #94a3b8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .feature {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+      transition: 0.3s;
+    }
+
+    .feature:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .feature p {
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    body.dark-mode .feature p {
+      color: #94a3b8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      color: #64748b;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      background: var(--card-bg);
+    }
+
+    footer strong {
+      color: #dc2626;
+    }
+
+    @media (max-width: 768px) {
+      .hero h2 { font-size: 2.4rem; }
+      .hero p { font-size: 1.05rem; }
+      .card { padding: 28px; }
+      nav a { padding: 8px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-icon">F</div>
+        <h1>FinAssist</h1>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="simulatore.html">Simulatore</a>
+        <a href="contatti.html">Contatti</a>
+        <button class="theme-toggle" id="themeToggle" title="Cambia tema">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>Soluzioni Finanziarie Smart</h2>
+    <p>FinAssist ti offre strumenti moderni per analizzare e simulare prodotti finanziari, con un'interfaccia semplice e un design rilassante per ogni momento della giornata.</p>
+    <div class="cta-buttons">
+      <a href="simulatore.html" class="cta-btn primary">Accedi al Simulatore</a>
+      <a href="contatti.html" class="cta-btn secondary">Contattaci</a>
+    </div>
+  </section>
+
+  <main class="container">
+    <div class="card">
+      <h2>Benvenuto su FinAssist</h2>
+      <p>Scopri strumenti evoluti per simulazioni e analisi finanziarie. Tutti i calcoli vengono elaborati localmente nel tuo browser, senza invio di dati esterni.</p>
+      <p>Usa il menu in alto per navigare tra le sezioni e accedere ai diversi strumenti.</p>
+    </div>
+
+    <div class="grid">
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Simulatore Avanzato</h3>
+        <p>Analisi completa per carte revolving e prodotti finanziari, con supporto per tassi promozionali e calcolo dettagliato.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔒</div>
+        <h3>Calcoli Sicuri</h3>
+        <p>I dati rimangono sul tuo dispositivo: sicurezza e privacy al 100%, senza connessioni esterne.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📱</div>
+        <h3>Design Responsive</h3>
+        <p>Ottimizzato per desktop e mobile, con una grafica chiara e moderna adatta a qualsiasi schermo.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p><strong>Nota:</strong> Questo sito fornisce strumenti a scopo informativo. Nessuna responsabilità per l'uso dei risultati generati.</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>
